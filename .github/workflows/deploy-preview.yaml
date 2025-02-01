@@ -59,3 +59,4 @@ jobs:
           workingDirectory: .
           environment: preview
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          vars: API_VERSION
