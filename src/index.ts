@@ -13,7 +13,7 @@ app.get("/", async (c) => {
 });
 
 app.get(
-  "/",
+  "/scalar",
   apiReference({
     spec: {
       url: "/openapi.json",
