@@ -48,10 +48,27 @@ jobs:
       - name: test
         run: pnpm run test
 
+      - name: generate api version
+        id: api-version
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+          REF_NAME: ${{ github.ref_name }}
+        run: |
+          BRANCH_NAME="${HEAD_REF:-$REF_NAME}"
+
+          # replace forward slashes and special characters with hyphens
+          CLEAN_BRANCH=$(echo "$BRANCH_NAME" | sed 's/[^a-zA-Z0-9]/-/g')
+
+          # get short SHA (first 7 characters)
+          SHORT_SHA=$(echo "${{ github.sha }}" | cut -c1-7)
+
+          # combine
+          echo "version=$CLEAN_BRANCH-$SHORT_SHA" >> "$GITHUB_OUTPUT"
+
       - name: deploy
         if: ${{ github.event.inputs.dry-run != 'true' }}
         env:
-          API_VERSION: ${{ github.sha }}
+          API_VERSION: ${{ steps.api-version.outputs.version }}
         uses: cloudflare/wrangler-action@6d58852c35a27e6034745c5d0bc373d739014f7f # v3.13.0
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
