@@ -4,14 +4,11 @@ import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
+import { VERSIONS_ROUTER } from "./routes/versions";
 
 const app = new OpenAPIHono<HonoContext>();
 
-app.get("/", async (c) => {
-  return c.json({
-    message: "Hello, World!",
-  });
-});
+app.route("/api/v1", VERSIONS_ROUTER);
 
 app.get(
   "/scalar",
@@ -21,15 +18,6 @@ app.get(
     },
     layout: "classic",
     customCss: /* css */`
-    .section.introduction-section {
-      padding: 16px 0 !important;
-    }
-
-    .section-container {
-      border: none !important;
-      padding: 0 !important;
-    }
-
     .tag-section {
       padding: 0 !important;
     }

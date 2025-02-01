@@ -1,5 +1,12 @@
 import { z } from "@hono/zod-openapi";
 
+export const EmojiVersion = z.object({
+  version: z.string().openapi({
+    description: "The emoji version",
+    example: "16.0",
+  }),
+});
+
 export const ApiErrorSchema = z.object({
   path: z.string().openapi({
     description: "The path of the request",
