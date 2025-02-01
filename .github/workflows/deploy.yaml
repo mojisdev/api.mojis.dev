@@ -55,3 +55,4 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           workingDirectory: .
           environment: production
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
