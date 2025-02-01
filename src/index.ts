@@ -2,6 +2,7 @@ import type { ApiError } from "./schemas";
 import type { HonoContext } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
+import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
 
 const app = new OpenAPIHono<HonoContext>();
@@ -80,7 +81,7 @@ app.doc("/openapi.json", (c) => {
   return {
     openapi: "3.0.0",
     info: {
-      version: "1.0.0",
+      version: env(c).API_VERSION || "x.y.z",
       title: "Mojis API",
     },
     tags: [
