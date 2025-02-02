@@ -1,4 +1,4 @@
-name = "mojis-api-preview"
+name = "mojis-api"
 main = "src/index.ts"
 compatibility_date = "2024-12-15"
 

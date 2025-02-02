@@ -3,12 +3,13 @@ import type { HonoContext } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
+import { showRoutes } from "hono/dev";
 import { HTTPException } from "hono/http-exception";
-import { VERSIONS_ROUTER } from "./routes/versions";
+import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
 const app = new OpenAPIHono<HonoContext>();
 
-app.route("/api/v1", VERSIONS_ROUTER);
+app.route("/api/v1", V1_VERSIONS_ROUTER);
 
 app.get(
   "/scalar",
@@ -73,7 +74,14 @@ app.doc("/openapi.json", (c) => {
       title: "Mojis API",
     },
     tags: [
-
+      {
+        name: "Emoji",
+        description: "Emoji related endpoints",
+      },
+      {
+        name: "Misc",
+        description: "Miscellaneous endpoints",
+      },
     ],
     servers: [
       server,
@@ -110,5 +118,8 @@ app.notFound(async (c) => {
     timestamp: new Date().toISOString(),
   } satisfies ApiError, 404);
 });
+
+showRoutes(app);
+// console.log(JSON.stringify(app.openAPIRegistry, null, 2));
 
 export default app;
