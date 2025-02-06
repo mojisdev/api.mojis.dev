@@ -3,7 +3,7 @@ import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
 import { ApiErrorSchema, EmojiVersion } from "../schemas";
 import { createError } from "../utils";
 
-export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/versions")
+export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/versions");
 
 const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
   method: "get",
