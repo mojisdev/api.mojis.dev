@@ -9,7 +9,7 @@ import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
 const app = new OpenAPIHono<HonoContext>();
 
-app.route("/api/v1", V1_VERSIONS_ROUTER);
+app.route("/", V1_VERSIONS_ROUTER);
 
 app.get(
   "/scalar",
