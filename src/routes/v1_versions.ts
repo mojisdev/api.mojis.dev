@@ -1,6 +1,5 @@
 import type { HonoContext } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { EMOJI_LOCK_SCHEMA } from "../schemas";
 import { createError, getAvailableVersions } from "../utils";
 import { ALL_EMOJI_VERSIONS_ROUTE, DRAFT_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE } from "./v1_versions.openapi";
 

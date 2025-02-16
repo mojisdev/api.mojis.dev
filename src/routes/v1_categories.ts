@@ -1,6 +1,6 @@
 import type { HonoContext } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { createError, getAvailableVersions } from "../utils";
+import { createError } from "../utils";
 import { ALL_CATEGORIES_ROUTE } from "./v1_categories.openapi";
 
 export const V1_CATEGORIES_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/categories/:version");
