@@ -65,4 +65,20 @@ describe("v1_versions", () => {
     expect(Array.isArray(data)).toBe(true);
     expect(data.every((version) => !version.draft)).toBe(true);
   });
+
+  it.todo("should return 404 when no draft versions are available", async () => {
+    const request = new Request("https://api.mojis.dev/api/v1/versions/draft");
+    const ctx = createExecutionContext();
+    const response = await worker.fetch(request, env, ctx);
+    await waitOnExecutionContext(ctx);
+
+    expect(response.status).toBe(404);
+    const data = await response.json();
+    expect(data).toMatchObject({
+      message: expect.any(String),
+      status: 404,
+      path: "/api/v1/versions/draft",
+      timestamp: expect.any(String),
+    });
+  });
 });
