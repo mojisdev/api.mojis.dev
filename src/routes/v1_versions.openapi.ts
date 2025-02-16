@@ -1,21 +1,23 @@
 import { createRoute, z } from "@hono/zod-openapi";
 import { ApiErrorSchema, EmojiVersion } from "../schemas";
 
+const DRAFT_PARAMETER = {
+  in: "query" as const,
+  name: "draft",
+  required: false,
+  description: "Whether to include draft versions",
+  schema: {
+    type: "string" as const,
+    enum: ["true", "false"],
+  },
+};
+
 export const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
   method: "get",
   path: "/",
   tags: ["Versions"],
   parameters: [
-    {
-      in: "query",
-      name: "draft",
-      required: false,
-      description: "Whether to include draft versions",
-      schema: {
-        type: "string",
-        enum: ["true", "false"],
-      },
-    },
+    DRAFT_PARAMETER,
   ],
   responses: {
     200: {
@@ -42,16 +44,7 @@ export const LATEST_EMOJI_VERSIONS_ROUTE = createRoute({
   path: "/latest",
   tags: ["Versions"],
   parameters: [
-    {
-      in: "query",
-      name: "draft",
-      required: false,
-      description: "Whether to include draft versions",
-      schema: {
-        type: "string",
-        enum: ["true", "false"],
-      },
-    },
+    DRAFT_PARAMETER,
   ],
   responses: {
     200: {
