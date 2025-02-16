@@ -15,6 +15,21 @@ export const EmojiVersionSchema = z.object({
   }),
 });
 
+export const EmojiCategorySchema = z.object({
+  name: z.string().openapi({
+    description: "The name of the category",
+    example: "Smileys & Emotion",
+  }),
+  slug: z.string().openapi({
+    description: "The slug of the category",
+    example: "smileys-emotion",
+  }),
+  subgroups: z.array(z.string()).openapi({
+    description: "The subgroups of the category",
+    example: ["face-smiling", "face-affection"],
+  }),
+});
+
 export const ApiErrorSchema = z.object({
   path: z.string().openapi({
     description: "The path of the request",

@@ -1,5 +1,5 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { ApiErrorSchema } from "../schemas";
+import { ApiErrorSchema, EmojiCategorySchema } from "../schemas";
 
 const VERSION_PATH_PARAMETER = {
   in: "path" as const,
@@ -21,7 +21,7 @@ export const ALL_CATEGORIES_ROUTE = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.array(z.object({})),
+          schema: z.array(EmojiCategorySchema),
         },
       },
       description: "Retrieve a list of all emoji categories available for the specified version",
@@ -57,7 +57,7 @@ export const GET_CATEGORY_ROUTE = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.object({}),
+          schema: EmojiCategorySchema,
         },
       },
       description: "Retrieve the information for the specified emoji category",
