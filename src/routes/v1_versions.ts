@@ -1,39 +1,21 @@
 import type { HonoContext } from "../types";
-import { createRoute, OpenAPIHono, z } from "@hono/zod-openapi";
-import { ApiErrorSchema, EmojiVersion } from "../schemas";
-import { createError } from "../utils";
+import { OpenAPIHono, z } from "@hono/zod-openapi";
+import { EMOJI_LOCK_SCHEMA } from "../schemas";
+import { createError, getCachedVersions } from "../utils";
+import { ALL_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE } from "./v1_versions.openapi";
 
 export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/versions");
 
-const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
-  method: "get",
-  path: "/",
-  tags: ["Misc"],
-  responses: {
-    200: {
-      content: {
-        "application/json": {
-          schema: z.array(EmojiVersion),
-        },
-      },
-      description: "Retrieve a list of all emoji versions available",
-    },
-    500: {
-      content: {
-        "application/json": {
-          schema: ApiErrorSchema,
-        },
-      },
-      description: "Internal Server Error",
-    },
-  },
-});
-
-const EMOJI_LOCK_SCHEMA = z.object({
-  versions: z.array(z.string()),
-});
-
 V1_VERSIONS_ROUTER.openapi(ALL_EMOJI_VERSIONS_ROUTE, async (c) => {
+  try {
+    const versions = await getCachedVersions();
+    return c.json(versions.map((version) => ({ version })), 200);
+  } catch {
+    return createError(c, 500, "failed to fetch emoji data");
+  }
+});
+
+V1_VERSIONS_ROUTER.openapi(LATEST_EMOJI_VERSIONS_ROUTE, async (c) => {
   const res = await fetch("https://raw.githubusercontent.com/mojisdev/emoji-data/refs/heads/main/emojis.lock");
 
   if (!res.ok) {
@@ -49,8 +31,8 @@ V1_VERSIONS_ROUTER.openapi(ALL_EMOJI_VERSIONS_ROUTE, async (c) => {
   }
 
   return c.json(
-    result.data.versions.map((version: string) => ({
-      version,
+    result.data.versions.map((version) => ({
+      version: version.emoji_version,
     })),
     200,
   );

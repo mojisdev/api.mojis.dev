@@ -24,4 +24,8 @@ export const ApiErrorSchema = z.object({
   description: "An error response",
 });
 
-export type ApiError = z.infer<typeof ApiErrorSchema>;
+export const EMOJI_LOCK_SCHEMA = z.object({
+  versions: z.array(z.object({
+    emoji_version: z.string(),
+  })),
+});
