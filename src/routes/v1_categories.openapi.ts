@@ -1,5 +1,5 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { ApiErrorSchema, EmojiVersionSchema } from "../schemas";
+import { ApiErrorSchema } from "../schemas";
 
 const VERSION_PATH_PARAMETER = {
   in: "path" as const,
