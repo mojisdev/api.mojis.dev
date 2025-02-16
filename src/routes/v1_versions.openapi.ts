@@ -12,7 +12,8 @@ export const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
       required: false,
       description: "Whether to include draft versions",
       schema: {
-        type: "boolean",
+        type: "string",
+        enum: ["true", "false"],
       },
     },
   ],
@@ -47,7 +48,8 @@ export const LATEST_EMOJI_VERSIONS_ROUTE = createRoute({
       required: false,
       description: "Whether to include draft versions",
       schema: {
-        type: "boolean",
+        type: "string",
+        enum: ["true", "false"],
       },
     },
   ],
