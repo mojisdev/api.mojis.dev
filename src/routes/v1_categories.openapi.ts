@@ -1,29 +1,30 @@
 import { createRoute, z } from "@hono/zod-openapi";
-import { ApiErrorSchema, EmojiVersion } from "../schemas";
+import { ApiErrorSchema } from "../schemas";
 
+const VERSION_PATH_PARAMETER = {
+  in: "path" as const,
+  name: "version",
+  required: true,
+  example: "latest",
+  schema: {
+    type: "string" as const,
+  },
+};
 export const ALL_CATEGORIES_ROUTE = createRoute({
   method: "get",
   path: "/",
   tags: ["Categories"],
   parameters: [
-    {
-      in: "path",
-      name: "version",
-      required: true,
-      example: "latest",
-      schema: {
-        type: "string",
-      },
-    },
+    VERSION_PATH_PARAMETER,
   ],
   responses: {
     200: {
       content: {
         "application/json": {
-          schema: z.array(EmojiVersion),
+          schema: z.array(z.object({})),
         },
       },
-      description: "Retrieve a list of all emoji versions available",
+      description: "Retrieve a list of all emoji categories available for the specified version",
     },
     500: {
       content: {
@@ -41,10 +42,12 @@ export const GET_CATEGORY_ROUTE = createRoute({
   path: "/{category}",
   tags: ["Categories"],
   parameters: [
+    VERSION_PATH_PARAMETER,
     {
       in: "path",
-      name: "version",
+      name: "category",
       required: true,
+      example: "smileys",
       schema: {
         type: "string",
       },
@@ -54,10 +57,10 @@ export const GET_CATEGORY_ROUTE = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.array(EmojiVersion),
+          schema: z.object({}),
         },
       },
-      description: "Retrieve a list of all emoji versions available",
+      description: "Retrieve the information for the specified emoji category",
     },
     500: {
       content: {

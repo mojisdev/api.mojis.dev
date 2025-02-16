@@ -1,6 +1,7 @@
 import type { Context } from "hono";
 import type { ContentfulStatusCode } from "hono/utils/http-status";
-import type { ApiError } from "./types";
+import type { ApiError, EmojiLock } from "./types";
+import { EMOJI_LOCK_SCHEMA } from "./schemas";
 
 export function createError<TCtx extends Context, TStatus extends ContentfulStatusCode>(ctx: TCtx, status: TStatus, message: string) {
   const url = new URL(ctx.req.url);
@@ -14,29 +15,7 @@ export function createError<TCtx extends Context, TStatus extends ContentfulStat
   });
 }
 
-const CACHE_TTL = 60 * 60;
-
-export async function getCachedVersions(): Promise<string[]> {
-  const cache = await caches.open("emoji-versions");
-  const cacheKey = "versions";
-
-  let response = await cache.match(cacheKey);
-
-  if (!response) {
-    const versions = await getAvailableVersions();
-    response = new Response(JSON.stringify(versions), {
-      headers: {
-        "Cache-Control": `public, max-age=${CACHE_TTL}`,
-        "Content-Type": "application/json",
-      },
-    });
-    await cache.put(cacheKey, response.clone());
-  }
-
-  return JSON.parse(await response.text());
-}
-
-export async function getAvailableVersions(): Promise<string[]> {
+export async function getAvailableVersions(): Promise<EmojiLock["versions"]> {
   const res = await fetch("https://raw.githubusercontent.com/mojisdev/emoji-data/refs/heads/main/emojis.lock");
 
   if (!res.ok) {
@@ -45,17 +24,11 @@ export async function getAvailableVersions(): Promise<string[]> {
 
   const data = await res.json();
 
-  if (
-    data == null
-    || typeof data !== "object"
-    || !("versions" in data)
-    || !Array.isArray(data.versions)
-    || data.versions.some((version: any) => typeof version !== "object"
-      || !("emoji_version" in version)
-      || typeof version.emoji_version !== "string")
-  ) {
+  const result = EMOJI_LOCK_SCHEMA.safeParse(data);
+
+  if (!result.success) {
     throw new Error("invalid emoji data schema");
   }
 
-  return data.versions.map((version) => version.emoji_version);
+  return result.data.versions;
 }
