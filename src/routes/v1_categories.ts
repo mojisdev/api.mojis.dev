@@ -12,11 +12,11 @@ V1_CATEGORIES_ROUTER.use(async (c, next) => {
     return createError(c, 400, "missing version");
   }
 
-  const availableVersions = await getAvailableVersions();
+  // const availableVersions = await getAvailableVersions();
 
-  if (!availableVersions.includes(version) && version !== "latest") {
-    return createError(c, 400, "invalid version");
-  }
+  // if (!availableVersions.includes(version) && version !== "latest") {
+  //   return createError(c, 400, "invalid version");
+  // }
 
   await next();
 });

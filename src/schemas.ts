@@ -1,9 +1,17 @@
 import { z } from "@hono/zod-openapi";
 
 export const EmojiVersion = z.object({
-  version: z.string().openapi({
+  draft: z.boolean().openapi({
+    description: "Whether the version is a draft",
+    example: false,
+  }),
+  emoji_version: z.string().nullable().openapi({
     description: "The emoji version",
     example: "16.0",
+  }),
+  unicode_version: z.string().nullable().openapi({
+    description: "The Unicode version that corresponds to the emoji version",
+    example: "14.0",
   }),
 });
 
@@ -25,7 +33,11 @@ export const ApiErrorSchema = z.object({
 });
 
 export const EMOJI_LOCK_SCHEMA = z.object({
-  versions: z.array(z.object({
-    emoji_version: z.string(),
-  })),
+  versions: z.array(
+    z.object({
+      emoji_version: z.string().nullable(),
+      unicode_version: z.string().nullable(),
+      draft: z.boolean(),
+    }),
+  ),
 });
