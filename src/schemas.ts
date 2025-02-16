@@ -1,6 +1,6 @@
 import { z } from "@hono/zod-openapi";
 
-export const EmojiVersion = z.object({
+export const EmojiVersionSchema = z.object({
   draft: z.boolean().openapi({
     description: "Whether the version is a draft",
     example: false,
