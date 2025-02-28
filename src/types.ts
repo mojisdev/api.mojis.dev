@@ -5,6 +5,7 @@ export interface HonoContext {
   Bindings: {
     ENVIRONMENT: string;
     API_VERSION?: string;
+    GITHUB_TOKEN: string;
   };
 }
 
