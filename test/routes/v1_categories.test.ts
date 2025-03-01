@@ -9,7 +9,7 @@ import worker from "../../src";
 
 describe("v1_categories", () => {
   it("should return 404 for non-existent version", async () => {
-    const request = new Request("https://mojis.dev/api/v1/categories/999.0");
+    const request = new Request("https://api.mojis.dev/api/v1/categories/999.0");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -24,7 +24,7 @@ describe("v1_categories", () => {
   });
 
   it("should redirect /latest to the actual latest version", async () => {
-    const request = new Request("https://mojis.dev/api/v1/categories/latest");
+    const request = new Request("https://api.mojis.dev/api/v1/categories/latest");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -34,7 +34,7 @@ describe("v1_categories", () => {
   });
 
   it("should return all categories for a valid version", async () => {
-    const request = new Request("https://mojis.dev/api/v1/categories/15.1");
+    const request = new Request("https://api.mojis.dev/api/v1/categories/15.1");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -50,7 +50,7 @@ describe("v1_categories", () => {
   });
 
   it("should return a specific category", async () => {
-    const request = new Request("https://mojis.dev/api/v1/categories/15.1/smileys-emotion");
+    const request = new Request("https://api.mojis.dev/api/v1/categories/15.1/smileys-emotion");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -65,7 +65,7 @@ describe("v1_categories", () => {
   });
 
   it("should handle missing version parameter", async () => {
-    const request = new Request("https://mojis.dev/api/v1/categories/");
+    const request = new Request("https://api.mojis.dev/api/v1/categories/");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);

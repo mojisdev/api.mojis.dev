@@ -9,7 +9,7 @@ import worker from "../../src";
 
 describe("v1_versions", () => {
   it("should return all versions", async () => {
-    const request = new Request("https://mojis.dev/api/v1/versions");
+    const request = new Request("https://api.mojis.dev/api/v1/versions");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -22,10 +22,11 @@ describe("v1_versions", () => {
       unicode_version: expect.any(String),
       draft: expect.any(Boolean),
     });
+    expect(data.every((v) => !v.draft)).toBe(true);
   });
 
   it("should return latest version", async () => {
-    const request = new Request("https://mojis.dev/api/v1/versions/latest");
+    const request = new Request("https://api.mojis.dev/api/v1/versions/latest");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -40,7 +41,7 @@ describe("v1_versions", () => {
   });
 
   it("should return latest draft version", async () => {
-    const request = new Request("https://mojis.dev/api/v1/versions/draft");
+    const request = new Request("https://api.mojis.dev/api/v1/versions/draft");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -54,8 +55,8 @@ describe("v1_versions", () => {
     });
   });
 
-  it("should exclude draft versions when draft=true query param is set", async () => {
-    const request = new Request("https://mojis.dev/api/v1/versions?draft=true");
+  it("should include draft versions when draft=true query param is set", async () => {
+    const request = new Request("https://api.mojis.dev/api/v1/versions?draft=true");
     const ctx = createExecutionContext();
     const response = await worker.fetch(request, env, ctx);
     await waitOnExecutionContext(ctx);
@@ -63,7 +64,8 @@ describe("v1_versions", () => {
     expect(response.status).toBe(200);
     const data = await response.json() as EmojiVersion[];
     expect(Array.isArray(data)).toBe(true);
-    expect(data.every((version) => !version.draft)).toBe(true);
+    expect(data.every((version) => !version.draft)).toBe(false);
+    expect(data.some((version) => version.draft)).toBe(true);
   });
 
   it.todo("should return 404 when no draft versions are available", async () => {
