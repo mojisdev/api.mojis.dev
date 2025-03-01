@@ -43,7 +43,7 @@ importers:
         specifier: ^5.8.2
         version: 5.8.2
       vitest:
-        specifier: 3.0.7
+        specifier: ^3.0.7
         version: 3.0.7(@types/debug@4.1.12)
       wrangler:
         specifier: ^3.111.0
