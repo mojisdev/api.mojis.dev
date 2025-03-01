@@ -4,6 +4,8 @@ import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { showRoutes } from "hono/dev";
 import { HTTPException } from "hono/http-exception";
+
+import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
 import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
@@ -11,6 +13,7 @@ const app = new OpenAPIHono<HonoContext>();
 
 app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
+app.route("/", GATEWAY_GITHUB_ROUTER);
 
 app.get(
   "/scalar",
@@ -20,10 +23,6 @@ app.get(
     },
     layout: "classic",
     customCss: /* css */`
-    .tag-section {
-      padding: 0 !important;
-    }
-
     .endpoint-label-path {
       display: none !important;
     }
@@ -35,6 +34,7 @@ app.get(
     .scalar-codeblock-code {
       display: unset;
     }
+
 
     :root {
       --theme-color-accent: rgb(59, 130, 246);
@@ -82,6 +82,10 @@ app.doc("/openapi.json", (c) => {
       {
         name: "Versions",
         description: "Emoji versions related endpoints",
+      },
+      {
+        name: "Gateway",
+        description: "Gateway related endpoints",
       },
     ],
     servers: [
