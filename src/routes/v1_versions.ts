@@ -11,7 +11,7 @@ V1_VERSIONS_ROUTER.openapi(ALL_EMOJI_VERSIONS_ROUTE, async (c) => {
 
     let versions = await getAvailableVersions();
 
-    if (draft === "true") {
+    if (draft !== "true") {
       versions = versions.filter((version) => !version.draft);
     }
 
@@ -27,7 +27,7 @@ V1_VERSIONS_ROUTER.openapi(LATEST_EMOJI_VERSIONS_ROUTE, async (c) => {
 
     let versions = await getAvailableVersions();
 
-    if (draft === "true") {
+    if (draft !== "true") {
       versions = versions.filter((version) => !version.draft);
     }
 
