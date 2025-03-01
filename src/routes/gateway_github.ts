@@ -16,6 +16,9 @@ GATEWAY_GITHUB_ROUTER.openapi(GITHUB_EMOJIS_ROUTE, async (c) => {
   });
 
   if (!response.ok) {
+    const errorData = await response.text();
+    console.error(`GitHub API error: ${response.status} - ${errorData}`);
+
     return createError(c, 500, "Internal Server Error");
   }
 

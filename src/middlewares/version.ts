@@ -1,6 +1,8 @@
 import { createMiddleware } from "hono/factory";
 import { createError, getAvailableVersions } from "../utils";
 
+const DEFAULT_FALLBACK_VERSION = "15.1";
+
 export const versionMiddleware = createMiddleware(async (c, next) => {
   const version = c.req.param("version");
   const fullPath = c.req.path;
@@ -9,6 +11,7 @@ export const versionMiddleware = createMiddleware(async (c, next) => {
     return createError(c, 400, "missing version");
   }
 
+  // TODO(@luxass): cache the available versions for x amount of time.
   const availableVersions = await getAvailableVersions();
 
   if (version !== "latest" && !availableVersions.some((v) => v.emoji_version === version)) {
@@ -23,7 +26,7 @@ export const versionMiddleware = createMiddleware(async (c, next) => {
       return createError(c, 404, "no versions available");
     }
 
-    const path = fullPath.replace("latest", latestVersion.emoji_version ?? "15.1");
+    const path = fullPath.replace("latest", latestVersion.emoji_version ?? DEFAULT_FALLBACK_VERSION);
 
     return c.redirect(path);
   }
