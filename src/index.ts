@@ -6,6 +6,7 @@ import { showRoutes } from "hono/dev";
 import { HTTPException } from "hono/http-exception";
 
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
+import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
 import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
@@ -14,6 +15,7 @@ const app = new OpenAPIHono<HonoContext>();
 app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
+app.route("/", RANDOM_EMOJI_ROUTER);
 
 app.get(
   "/scalar",
