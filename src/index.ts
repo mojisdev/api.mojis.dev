@@ -8,12 +8,14 @@ import { HTTPException } from "hono/http-exception";
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
+import { V1_RAW_ROUTER } from "./routes/v1_raw";
 import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
 const app = new OpenAPIHono<HonoContext>();
 
 app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
+app.route("/", V1_RAW_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
 app.route("/", RANDOM_EMOJI_ROUTER);
 
@@ -77,8 +79,8 @@ app.doc("/openapi.json", (c) => {
     },
     tags: [
       {
-        name: "Emoji",
-        description: "Emoji related endpoints",
+        name: "Categories",
+        description: "Categories related endpoints",
       },
       {
         name: "Versions",
@@ -87,6 +89,10 @@ app.doc("/openapi.json", (c) => {
       {
         name: "Gateway",
         description: "Gateway related endpoints",
+      },
+      {
+        name: "Raw",
+        description: "Raw data related endpoints",
       },
     ],
     servers: [
