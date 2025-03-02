@@ -3,6 +3,16 @@ import { createError, getAvailableVersions } from "../utils";
 
 const DEFAULT_FALLBACK_VERSION = "15.1";
 
+export const VERSION_PATH_PARAMETER = {
+  in: "path" as const,
+  name: "version",
+  required: true,
+  example: "latest",
+  schema: {
+    type: "string" as const,
+  },
+};
+
 export const versionMiddleware = createMiddleware(async (c, next) => {
   const version = c.req.param("version");
   const fullPath = c.req.path;

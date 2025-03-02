@@ -1,15 +1,7 @@
 import { createRoute, z } from "@hono/zod-openapi";
+import { VERSION_PATH_PARAMETER } from "../middlewares/version";
 import { ApiErrorSchema, EmojiCategorySchema } from "../schemas";
 
-const VERSION_PATH_PARAMETER = {
-  in: "path" as const,
-  name: "version",
-  required: true,
-  example: "latest",
-  schema: {
-    type: "string" as const,
-  },
-};
 export const ALL_CATEGORIES_ROUTE = createRoute({
   method: "get",
   path: "/",
