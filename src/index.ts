@@ -37,7 +37,6 @@ app.get(
       display: unset;
     }
 
-
     :root {
       --theme-color-accent: rgb(59, 130, 246);
       --theme-color-background: hsla(348, 71%, 93%, 1);
