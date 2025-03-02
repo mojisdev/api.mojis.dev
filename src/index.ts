@@ -77,8 +77,8 @@ app.doc("/openapi.json", (c) => {
     },
     tags: [
       {
-        name: "Emoji",
-        description: "Emoji related endpoints",
+        name: "Categories",
+        description: "Categories related endpoints",
       },
       {
         name: "Versions",
