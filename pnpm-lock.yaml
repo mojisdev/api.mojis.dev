@@ -9,14 +9,14 @@ importers:
   .:
     dependencies:
       '@hono/zod-openapi':
-        specifier: ^0.19.1
-        version: 0.19.1(hono@4.7.2)(zod@3.24.2)
+        specifier: ^0.19.2
+        version: 0.19.2(hono@4.7.2)(zod@3.24.2)
       '@mojis/internal-utils':
-        specifier: ^0.0.1
-        version: 0.0.1
+        specifier: ^0.0.4
+        version: 0.0.4
       '@scalar/hono-api-reference':
-        specifier: ^0.5.177
-        version: 0.5.177(@hyperjump/browser@1.2.0)(hono@4.7.2)(tailwindcss@4.0.9)(typescript@5.8.2)
+        specifier: ^0.5.178
+        version: 0.5.178(@hyperjump/browser@1.2.0)(hono@4.7.2)(tailwindcss@4.0.9)(typescript@5.8.2)
       hono:
         specifier: ^4.7.2
         version: 4.7.2
@@ -569,8 +569,8 @@ packages:
     peerDependencies:
       vue: ^3.2.0
 
-  '@hono/zod-openapi@0.19.1':
-    resolution: {integrity: sha512-Zl+/VVGPh2sJz+csw12CAThd9sQvPRLqzV1FVXzomvfuxKkYqOM5ZhOGYqKo5uPlLmV+ROGzQJOwpVKGi/b5SA==}
+  '@hono/zod-openapi@0.19.2':
+    resolution: {integrity: sha512-lkFa6wdQVgY7d7/m++Ixr3hvKCF5Y+zjTIPM37fex5ylCfX53A/W28gZRDuFZx3aR+noKob7lHfwdk9dURLzxw==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
       hono: '>=4.3.6'
@@ -805,8 +805,8 @@ packages:
   '@marijn/find-cluster-break@1.0.2':
     resolution: {integrity: sha512-l0h88YhZFyKdXIFNfSWpyjStDjGHwZ/U7iobcK1cQQD8sejsONdQtTVU+1wVN1PBw40PiiHB1vA5S7VTfQiP9g==}
 
-  '@mojis/internal-utils@0.0.1':
-    resolution: {integrity: sha512-4DW6ayX5vszX35I2wdVIEOWC4fYHfPdAtPkFxN1ioiIWYiY5V14SXQ9D71kjpXrwBIVDepiym2vFSLL/q/HMwg==}
+  '@mojis/internal-utils@0.0.4':
+    resolution: {integrity: sha512-5xqRe318ncowoCH3q66FSLKX1zSSGoKm7HxRdss6T+m58R0cOE7ose00Q3Zc7IHioS+ef0W5YGvgiCqHa70MpQ==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -929,12 +929,12 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@scalar/api-client@2.2.53':
-    resolution: {integrity: sha512-09NuJjDCbYA/gz4TizWeAxXa3vhwZddquTkFwTrHFfMzSfkLkTNHOIdT01V26BtZCs4pghxtebRORxefQiah9A==}
+  '@scalar/api-client@2.2.54':
+    resolution: {integrity: sha512-cUwJ1eJCmjxXDZ12Mhjn8N1UaDfY9WkFYYpSyzOeQNMSuo9/wRdJq4soyHm9meeT6x91usiidopGHJBLi8L3rQ==}
     engines: {node: '>=18'}
 
-  '@scalar/api-reference@1.25.124':
-    resolution: {integrity: sha512-FETW/QVAL/S0p1y+eUdoy4EOrBqmmhIdGipBrn14ixMB30hSSekxNcKCabje7f0w48xX/pauqemEc3geAen/+Q==}
+  '@scalar/api-reference@1.25.125':
+    resolution: {integrity: sha512-/aq4VtFbx9DKRQL9woywIawhp82aryy4w5onZAz/6ELxfN6Cn1jFKhgV4nCi9kRgErNkhFT0PbjDO/e14QZWwg==}
     engines: {node: '>=18'}
 
   '@scalar/code-highlight@0.0.23':
@@ -949,8 +949,8 @@ packages:
     resolution: {integrity: sha512-EQW9N1+mDORhsbjdtCI3XDvmUKsuKw1uf6r3kT1Mm2zQKT+rWwA0ChsAkEN6OG62C0YumMuXpH71h1seAWptxw==}
     engines: {node: '>=18'}
 
-  '@scalar/hono-api-reference@0.5.177':
-    resolution: {integrity: sha512-W0pI4HECxq0ee0mnpMMJda5WSUdliUqJ05DU3X3x7iSZDjF8GyssiCHgPaNuTRHYAfnxxdkEPJbFjUOL0nRQYw==}
+  '@scalar/hono-api-reference@0.5.178':
+    resolution: {integrity: sha512-P2687nYs1Iki0DwgN9y/D2oQbUPDTUVotQNB1gqw9sucPUvPLOXVYOnxQujdsQvMnQcHSE3eajEaU+7h1W9baA==}
     engines: {node: '>=18'}
     peerDependencies:
       hono: ^4.0.0
@@ -3489,7 +3489,7 @@ snapshots:
       '@tanstack/vue-virtual': 3.13.2(vue@3.5.13(typescript@5.8.2))
       vue: 3.5.13(typescript@5.8.2)
 
-  '@hono/zod-openapi@0.19.1(hono@4.7.2)(zod@3.24.2)':
+  '@hono/zod-openapi@0.19.2(hono@4.7.2)(zod@3.24.2)':
     dependencies:
       '@asteasolutions/zod-to-openapi': 7.3.0(zod@3.24.2)
       '@hono/zod-validator': 0.4.3(hono@4.7.2)(zod@3.24.2)
@@ -3725,7 +3725,7 @@ snapshots:
 
   '@marijn/find-cluster-break@1.0.2': {}
 
-  '@mojis/internal-utils@0.0.1':
+  '@mojis/internal-utils@0.0.4':
     dependencies:
       fs-extra: 11.3.0
       semver: 7.7.1
@@ -3810,7 +3810,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.34.9':
     optional: true
 
-  '@scalar/api-client@2.2.53(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)':
+  '@scalar/api-client@2.2.54(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)':
     dependencies:
       '@headlessui/tailwindcss': 0.2.2(tailwindcss@4.0.9)
       '@headlessui/vue': 1.7.23(vue@3.5.13(typescript@5.8.2))
@@ -3861,11 +3861,11 @@ snapshots:
       - typescript
       - universal-cookie
 
-  '@scalar/api-reference@1.25.124(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)':
+  '@scalar/api-reference@1.25.125(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)':
     dependencies:
       '@floating-ui/vue': 1.1.6(vue@3.5.13(typescript@5.8.2))
       '@headlessui/vue': 1.7.23(vue@3.5.13(typescript@5.8.2))
-      '@scalar/api-client': 2.2.53(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)
+      '@scalar/api-client': 2.2.54(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)
       '@scalar/code-highlight': 0.0.23
       '@scalar/components': 0.13.27(typescript@5.8.2)
       '@scalar/oas-utils': 0.2.109(@hyperjump/browser@1.2.0)
@@ -3948,9 +3948,9 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@scalar/hono-api-reference@0.5.177(@hyperjump/browser@1.2.0)(hono@4.7.2)(tailwindcss@4.0.9)(typescript@5.8.2)':
+  '@scalar/hono-api-reference@0.5.178(@hyperjump/browser@1.2.0)(hono@4.7.2)(tailwindcss@4.0.9)(typescript@5.8.2)':
     dependencies:
-      '@scalar/api-reference': 1.25.124(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)
+      '@scalar/api-reference': 1.25.125(@hyperjump/browser@1.2.0)(tailwindcss@4.0.9)(typescript@5.8.2)
       '@scalar/types': 0.0.36
       hono: 4.7.2
     transitivePeerDependencies:
