@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run --outdir=dist",
+    "build:openapi": "tsx ./scripts/build-openapi",
     "deploy": "wrangler deploy",
     "test": "pnpm vitest --run",
     "test:watch": "pnpm vitest",
     "lint": "eslint .",
+    "lint:spectral": "pnpm run build:openapi && spectral lint ./node_modules/.openapi/openapi.json",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
