@@ -4,6 +4,7 @@ import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { showRoutes } from "hono/dev";
 import { HTTPException } from "hono/http-exception";
+import { buildOpenApiConfig } from "./openapi";
 
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
@@ -69,30 +70,9 @@ app.doc("/openapi.json", (c) => {
     server.description = "Preview Environment";
   }
 
-  return {
-    openapi: "3.0.0",
-    info: {
-      version: env(c).API_VERSION || "x.y.z",
-      title: "Mojis API",
-    },
-    tags: [
-      {
-        name: "Categories",
-        description: "Categories related endpoints",
-      },
-      {
-        name: "Versions",
-        description: "Emoji versions related endpoints",
-      },
-      {
-        name: "Gateway",
-        description: "Gateway related endpoints",
-      },
-    ],
-    servers: [
-      server,
-    ],
-  };
+  return buildOpenApiConfig(env(c).API_VERSION || "x.y.z", [
+    server,
+  ]);
 });
 
 app.onError(async (err, c) => {
