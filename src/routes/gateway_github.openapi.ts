@@ -5,6 +5,7 @@ export const GITHUB_EMOJIS_ROUTE = createRoute({
   method: "get",
   path: "/emojis",
   tags: ["Gateway"],
+  description: "Retrieve a list of all GitHub emojis",
   responses: {
     200: {
       content: {

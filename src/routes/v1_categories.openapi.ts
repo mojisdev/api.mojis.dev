@@ -9,6 +9,7 @@ export const ALL_CATEGORIES_ROUTE = createRoute({
   parameters: [
     VERSION_PATH_PARAMETER,
   ],
+  description: "Retrieve a list of all emoji categories available for the specified version",
   responses: {
     200: {
       content: {
@@ -38,6 +39,7 @@ export const GET_CATEGORY_ROUTE = createRoute({
     {
       in: "path",
       name: "category",
+      description: "The category to retrieve",
       required: true,
       example: "smileys",
       schema: {
@@ -45,6 +47,7 @@ export const GET_CATEGORY_ROUTE = createRoute({
       },
     },
   ],
+  description: "Retrieve the information for the specified emoji category",
   responses: {
     200: {
       content: {
