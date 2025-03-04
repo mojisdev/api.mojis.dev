@@ -19,6 +19,7 @@ export const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
   parameters: [
     DRAFT_PARAMETER,
   ],
+  description: "Retrieve a list of all emoji versions available",
   responses: {
     200: {
       content: {
@@ -46,6 +47,7 @@ export const LATEST_EMOJI_VERSIONS_ROUTE = createRoute({
   parameters: [
     DRAFT_PARAMETER,
   ],
+  description: "Retrieve the latest emoji version available",
   responses: {
     200: {
       content: {
@@ -70,6 +72,7 @@ export const DRAFT_EMOJI_VERSIONS_ROUTE = createRoute({
   method: "get",
   path: "/draft",
   tags: ["Versions"],
+  description: "Retrieve the latest draft emoji version available",
   responses: {
     200: {
       content: {
