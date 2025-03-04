@@ -2,7 +2,6 @@ import type { ApiError, HonoContext } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
-import { showRoutes } from "hono/dev";
 import { HTTPException } from "hono/http-exception";
 import { buildOpenApiConfig } from "./openapi";
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
@@ -103,7 +102,5 @@ app.notFound(async (c) => {
     timestamp: new Date().toISOString(),
   } satisfies ApiError, 404);
 });
-
-showRoutes(app);
 
 export default app;
