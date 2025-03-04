@@ -6,10 +6,12 @@
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run --outdir=dist",
+    "build:openapi": "tsx ./scripts/build-openapi",
     "deploy": "wrangler deploy",
     "test": "pnpm vitest --run",
     "test:watch": "pnpm vitest",
     "lint": "eslint .",
+    "lint:openapi": "pnpm run build:openapi && spectral lint ./node_modules/.openapi/openapi.json",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -23,8 +25,10 @@
     "@cloudflare/vitest-pool-workers": "^0.7.4",
     "@cloudflare/workers-types": "^4.20250224.0",
     "@luxass/eslint-config": "^4.15.0",
+    "@stoplight/spectral-cli": "^6.14.2",
     "eslint": "^9.21.0",
     "eslint-plugin-format": "^1.0.1",
+    "tsx": "^4.19.3",
     "typescript": "^5.8.2",
     "vitest": "^3.0.7",
     "wrangler": "^3.111.0"

@@ -13,6 +13,8 @@ export const EmojiVersionSchema = z.object({
     description: "The Unicode version that corresponds to the emoji version",
     example: "14.0",
   }),
+}).openapi({
+  type: "object",
 });
 
 export const EmojiCategorySchema = z.object({

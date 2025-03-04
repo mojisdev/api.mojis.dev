@@ -4,12 +4,14 @@ import { ApiErrorSchema, EmojiCategorySchema } from "../schemas";
 const VERSION_PATH_PARAMETER = {
   in: "path" as const,
   name: "version",
+  description: "The emoji version to retrieve categories for",
   required: true,
   example: "latest",
   schema: {
     type: "string" as const,
   },
 };
+
 export const ALL_CATEGORIES_ROUTE = createRoute({
   method: "get",
   path: "/",
@@ -17,6 +19,7 @@ export const ALL_CATEGORIES_ROUTE = createRoute({
   parameters: [
     VERSION_PATH_PARAMETER,
   ],
+  description: "Retrieve a list of all emoji categories available for the specified version",
   responses: {
     200: {
       content: {
@@ -46,6 +49,7 @@ export const GET_CATEGORY_ROUTE = createRoute({
     {
       in: "path",
       name: "category",
+      description: "The category to retrieve",
       required: true,
       example: "smileys",
       schema: {
@@ -53,6 +57,7 @@ export const GET_CATEGORY_ROUTE = createRoute({
       },
     },
   ],
+  description: "Retrieve the information for the specified emoji category",
   responses: {
     200: {
       content: {
