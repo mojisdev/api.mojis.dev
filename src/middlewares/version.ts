@@ -6,6 +6,7 @@ const DEFAULT_FALLBACK_VERSION = "15.1";
 export const VERSION_PATH_PARAMETER = {
   in: "path" as const,
   name: "version",
+  description: "The version of the emoji data to use",
   required: true,
   example: "latest",
   schema: {
