@@ -8,7 +8,7 @@ import { buildOpenApiConfig } from "../src/openapi";
 const root = path.resolve(import.meta.dirname, "../");
 
 async function run() {
-  const obj = app.getOpenAPI31Document(buildOpenApiConfig("x.y.z", [
+  const obj = app.getOpenAPIDocument(buildOpenApiConfig("x.y.z", [
     {
       url: "https://api.mojis.dev",
       description: "Production Environment",
