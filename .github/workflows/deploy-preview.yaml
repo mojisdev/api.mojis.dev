@@ -40,6 +40,9 @@ jobs:
       - name: build
         run: pnpm build
 
+      - name: validate openapi
+        run: pnpm run validate-openapi
+
       - name: lint
         run: pnpm run lint
 
