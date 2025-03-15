@@ -2,11 +2,7 @@ import type { z } from "zod";
 import type { ApiErrorSchema, EMOJI_LOCK_SCHEMA, EmojiCategorySchema, EmojiVersionSchema } from "./schemas";
 
 export interface HonoContext {
-  Bindings: {
-    ENVIRONMENT: string;
-    API_VERSION?: string;
-    GITHUB_TOKEN: string;
-  };
+  Bindings: CloudflareBindings;
 }
 
 export type HonoBindings = HonoContext["Bindings"];

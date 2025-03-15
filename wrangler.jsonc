@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mojis-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-13",
+  "observability": {
+    "logs": {
+      "enabled": true
+    },
+    "enabled": true
+  },
+  "vars": {
+    "GITHUB_TOKEN": "",
+    "API_VERSION": "x.y.z"
+  },
+  "placement": { "mode": "smart" },
+  "env": {
+    "preview": {
+      "name": "mojis-api-preview",
+      "preview_urls": false,
+      "vars": {
+        "ENVIRONMENT": "preview"
+      },
+      "route": {
+        "custom_domain": true,
+        "pattern": "api.preview.mojis.dev"
+      }
+    },
+    "production": {
+      "name": "mojis-api",
+      "preview_urls": false,
+      "vars": {
+        "ENVIRONMENT": "production"
+      },
+      "route": {
+        "custom_domain": true,
+        "pattern": "api.mojis.dev"
+      }
+    }
+  }
+}
