@@ -4,6 +4,7 @@ import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
 import { buildOpenApiConfig } from "./openapi";
+import { EXPORT_ROUTER } from "./routes/export";
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
@@ -15,6 +16,7 @@ app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
 app.route("/", RANDOM_EMOJI_ROUTER);
+app.route("/export", EXPORT_ROUTER);
 
 app.get(
   "/scalar",

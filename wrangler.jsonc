@@ -9,6 +9,17 @@
     },
     "enabled": true
   },
+  "build": {
+    "command": "pnpm run build:emoji-data"
+  },
+  "rules": [
+    {
+      "type": "ESModule",
+      "globs": [
+        ".emoji-data/**"
+      ]
+    }
+  ],
   "vars": {
     "GITHUB_TOKEN": "",
     "API_VERSION": "x.y.z"
