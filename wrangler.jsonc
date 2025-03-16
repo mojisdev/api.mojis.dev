@@ -24,7 +24,13 @@
       "route": {
         "custom_domain": true,
         "pattern": "api.preview.mojis.dev"
-      }
+      },
+      "r2_buckets": [
+        {
+          "binding": "EMOJI_DATA",
+          "bucket_name": "mojis-preview"
+        }
+      ]
     },
     "production": {
       "name": "mojis-api",
@@ -35,7 +41,13 @@
       "route": {
         "custom_domain": true,
         "pattern": "api.mojis.dev"
-      }
+      },
+      "r2_buckets": [
+        {
+          "binding": "EMOJI_DATA",
+          "bucket_name": "mojis"
+        }
+      ]
     }
   }
 }
