@@ -13,6 +13,12 @@
     "GITHUB_TOKEN": "",
     "API_VERSION": "x.y.z"
   },
+  "r2_buckets": [
+    {
+      "binding": "EMOJI_DATA",
+      "bucket_name": "mojis"
+    }
+  ],
   "placement": { "mode": "smart" },
   "env": {
     "preview": {
