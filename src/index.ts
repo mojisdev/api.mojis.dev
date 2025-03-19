@@ -19,9 +19,7 @@ app.route("/", RANDOM_EMOJI_ROUTER);
 app.get(
   "/scalar",
   apiReference({
-    spec: {
-      url: "/openapi.json",
-    },
+    url: "/openapi.json",
     layout: "classic",
     customCss: /* css */`
     .endpoint-label-path {
