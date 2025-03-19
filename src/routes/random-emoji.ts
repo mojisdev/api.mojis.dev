@@ -1,10 +1,14 @@
 import type { HonoContext } from "../types";
 import { Hono } from "hono";
-import { cache } from "../utils";
+import { cache } from "hono/cache";
 
 export const RANDOM_EMOJI_ROUTER = new Hono<HonoContext>();
 
+RANDOM_EMOJI_ROUTER.get("/random-emoji.png", cache({
+  cacheName: "random-emoji",
+  cacheControl: "max-age=3600, immutable",
+}));
+
 RANDOM_EMOJI_ROUTER.get("/random-emoji.png", async (c) => {
-  cache(c, 60 * 60);
   return c.redirect("https://image.luxass.dev/api/image/emoji");
 });

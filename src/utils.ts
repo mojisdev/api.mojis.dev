@@ -32,15 +32,3 @@ export async function getAvailableVersions(): Promise<EmojiLock["versions"]> {
 
   return result.data.versions;
 }
-
-export function cache<TCtx extends Context>(ctx: TCtx, age: number, immutable = false) {
-  if (age === -1) {
-    ctx.header("Expires", "0");
-    ctx.header("Pragma", "no-cache");
-    ctx.header("Cache-Control", "no-cache, no-store, must-revalidate");
-    return;
-  }
-
-  ctx.header("Expires", new Date(Date.now() + age * 1000).toUTCString());
-  ctx.header("Cache-Control", ["public", `max-age=${age}`, immutable ? "immutable" : null].filter((x) => !!x).join(", "));
-};

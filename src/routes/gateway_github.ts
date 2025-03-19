@@ -1,10 +1,15 @@
 import type { HonoContext } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { cache, createError } from "../utils";
+import { cache } from "hono/cache";
+import { createError } from "../utils";
 import { GITHUB_EMOJIS_ROUTE } from "./gateway_github.openapi";
 
 export const GATEWAY_GITHUB_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/gateway/github");
 
+GATEWAY_GITHUB_ROUTER.get("*", cache({
+  cacheName: "github-emojis",
+  cacheControl: "max-age=3600, immutable",
+}));
 GATEWAY_GITHUB_ROUTER.openapi(GITHUB_EMOJIS_ROUTE, async (c) => {
   const response = await fetch("https://api.github.com/emojis", {
     headers: {
@@ -23,8 +28,6 @@ GATEWAY_GITHUB_ROUTER.openapi(GITHUB_EMOJIS_ROUTE, async (c) => {
   }
 
   const emojis = await response.json<Record<string, string>>();
-
-  cache(c, 3600, true);
 
   return c.json(emojis, 200);
 });
