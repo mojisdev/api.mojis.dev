@@ -62,7 +62,7 @@ app.doc("/openapi.json", (c) => {
   }
 
   if (c.env.ENVIRONMENT === "preview") {
-    server.url = "https://preview.api.mojis.dev";
+    server.url = "https://api.preview.mojis.dev";
     server.description = "Preview Environment";
   }
 
