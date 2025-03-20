@@ -4,8 +4,35 @@ import {
   env,
   waitOnExecutionContext,
 } from "cloudflare:test";
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import worker from "../../src";
+
+beforeAll(async () => {
+  await env.EMOJI_DATA.put("v15.1/groups.json", JSON.stringify([
+    {
+      name: "Smileys & Emotion",
+      slug: "smileys-emotion",
+      subgroups: [
+        "face-smiling",
+        "face-affection",
+        "face-tongue",
+        "face-hand",
+        "face-neutral-skeptical",
+        "face-sleepy",
+        "face-unwell",
+        "face-hat",
+        "face-glasses",
+        "face-concerned",
+        "face-negative",
+        "face-costume",
+        "cat-face",
+        "monkey-face",
+        "heart",
+        "emotion",
+      ],
+    },
+  ]));
+});
 
 describe("v1_categories", () => {
   it("should return 404 for non-existent version", async () => {

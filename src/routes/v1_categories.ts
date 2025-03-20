@@ -20,7 +20,6 @@ V1_CATEGORIES_ROUTER.openapi(ALL_CATEGORIES_ROUTE, async (c) => {
   const version = c.req.param("version");
 
   const res = await c.env.EMOJI_DATA.get(`v${version}/groups.json`);
-
   if (res == null) {
     throw new HTTPException(500, {
       message: "failed to fetch categories",
@@ -30,7 +29,6 @@ V1_CATEGORIES_ROUTER.openapi(ALL_CATEGORIES_ROUTE, async (c) => {
   const data = await res.json();
 
   const result = z.array(EmojiCategorySchema).safeParse(data);
-
   if (!result.success) {
     return createError(c, 500, "failed to parse categories");
   }
