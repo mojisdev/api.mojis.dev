@@ -9,7 +9,9 @@ export const GATEWAY_GITHUB_ROUTER = new OpenAPIHono<HonoContext>().basePath("/a
 GATEWAY_GITHUB_ROUTER.get("*", cache({
   cacheName: "github-emojis",
   cacheControl: "max-age=3600, immutable",
+
 }));
+
 GATEWAY_GITHUB_ROUTER.openapi(GITHUB_EMOJIS_ROUTE, async (c) => {
   const response = await fetch("https://api.github.com/emojis", {
     headers: {
