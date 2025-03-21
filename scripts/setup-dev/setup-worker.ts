@@ -51,13 +51,17 @@ app.post(
       promises.push(c.env.EMOJI_DATA.put(normalizedEntryName, entry.text));
     }
 
-    c.executionCtx.waitUntil(
-      Promise.all(promises),
-    );
-
-    return c.json({
-      message: "Files uploaded",
-    });
+    try {
+      await Promise.all(promises);
+      return c.json({
+        message: "Files uploaded",
+      });
+    } catch (err) {
+      console.error(err);
+      return c.json({
+        message: "Failed to upload files",
+      }, 500);
+    }
   },
 );
 
