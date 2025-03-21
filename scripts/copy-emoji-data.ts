@@ -3,7 +3,6 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { parseTarGzip } from "nanotar";
-import { unstable_startWorker } from "wrangler";
 
 const root = path.resolve(import.meta.dirname, "../");
 
