@@ -1,6 +1,6 @@
 import type { HonoContext } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { cache } from "hono/cache";
+import { cache } from "../middlewares/cache";
 import { createError } from "../utils";
 import { GITHUB_EMOJIS_ROUTE } from "./gateway_github.openapi";
 
@@ -9,7 +9,6 @@ export const GATEWAY_GITHUB_ROUTER = new OpenAPIHono<HonoContext>().basePath("/a
 GATEWAY_GITHUB_ROUTER.get("*", cache({
   cacheName: "github-emojis",
   cacheControl: "max-age=3600, immutable",
-
 }));
 
 GATEWAY_GITHUB_ROUTER.openapi(GITHUB_EMOJIS_ROUTE, async (c) => {
