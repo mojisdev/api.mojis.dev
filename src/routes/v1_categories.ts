@@ -1,7 +1,7 @@
 import type { HonoContext } from "../types";
 import { OpenAPIHono, z } from "@hono/zod-openapi";
-import { cache } from "hono/cache";
 import { HTTPException } from "hono/http-exception";
+import { cache } from "../middlewares/cache";
 import { versionMiddleware } from "../middlewares/version";
 import { EmojiCategorySchema } from "../schemas";
 import { createError } from "../utils";
