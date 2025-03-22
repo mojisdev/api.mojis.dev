@@ -10,6 +10,6 @@ DATA_SCHEMAS_ROUTER.get("*", cache({
   cacheControl: "max-age=3600, immutable",
 }));
 
-DATA_SCHEMAS_ROUTER.get("/groups", (c) => {
+DATA_SCHEMAS_ROUTER.get("/groups.json", (c) => {
   return c.json(groupsSchema);
 });
