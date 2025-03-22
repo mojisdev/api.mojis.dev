@@ -1,6 +1,6 @@
 import type { HonoContext } from "../types";
 import { Hono } from "hono";
-import { cache } from "hono/cache";
+import { cache } from "../middlewares/cache";
 
 export const RANDOM_EMOJI_ROUTER = new Hono<HonoContext>();
 

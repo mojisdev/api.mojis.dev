@@ -7,4 +7,18 @@ export default luxass({
   ignores: [
     "worker-configuration.d.ts",
   ],
+}, {
+  rules: {
+    "no-restricted-imports": [
+      "error",
+      {
+        patterns: [
+          {
+            group: [`hono/cache`],
+            message: "Use our own cache middleware instead",
+          },
+        ],
+      },
+    ],
+  },
 });
