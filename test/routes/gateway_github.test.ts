@@ -32,6 +32,7 @@ describe("gateway_github", () => {
     await waitOnExecutionContext(ctx);
 
     expect(response.status).toBe(200);
+    expect(response.headers.get("X-Cache")).toBe("MISS");
     const data = await response.json();
     expect(data).toEqual(mockGitHubEmojis);
   });
