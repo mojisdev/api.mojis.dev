@@ -19,12 +19,11 @@
       "bucket_name": "mojis"
     }
   ],
-  "kv_namespaces": [
-    {
-      "binding": "MOJIS_VERSIONS",
-      "id": "bf245c89f1d64a50aa32ac5cff0be281"
-    }
-  ],
+  "triggers": {
+    "crons": [
+      "0 */12 * * *"
+    ]
+  },
   "placement": { "mode": "smart" },
   "env": {
     "preview": {
@@ -42,12 +41,6 @@
           "binding": "EMOJI_DATA",
           "bucket_name": "mojis-preview"
         }
-      ],
-      "kv_namespaces": [
-        {
-          "binding": "MOJIS_VERSIONS",
-          "id": "bf245c89f1d64a50aa32ac5cff0be281"
-        }
       ]
     },
     "production": {
@@ -64,12 +57,6 @@
         {
           "binding": "EMOJI_DATA",
           "bucket_name": "mojis"
-        }
-      ],
-      "kv_namespaces": [
-        {
-          "binding": "MOJIS_VERSIONS",
-          "id": "bf245c89f1d64a50aa32ac5cff0be281"
         }
       ]
     }

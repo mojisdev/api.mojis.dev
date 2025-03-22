@@ -18,7 +18,7 @@ async function run() {
   formData.append("file", blob, "emoji-data.tar.gz");
 
   console.log("sending request to worker");
-  const res = await worker.fetch("https://api.mojis.dev/upload", {
+  const res = await worker.fetch("https://api.mojis.dev/setup", {
     method: "POST",
     // @ts-expect-error hmmm
     body: formData,

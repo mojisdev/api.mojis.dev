@@ -1,9 +1,10 @@
+import type { HonoEnv } from "../types";
 import { createMiddleware } from "hono/factory";
-import { createError, getAvailableVersions } from "../utils";
+import { createError } from "../utils";
 
 const DEFAULT_FALLBACK_VERSION = "15.1";
 
-export const versionMiddleware = createMiddleware(async (c, next) => {
+export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
   const version = c.req.param("version");
   const fullPath = c.req.path;
 
@@ -11,22 +12,30 @@ export const versionMiddleware = createMiddleware(async (c, next) => {
     return createError(c, 400, "missing version");
   }
 
-  // TODO(@luxass): cache the available versions for x amount of time.
-  const availableVersions = await getAvailableVersions();
+  const res = await c.env.EMOJI_DATA.get("versions.json");
 
-  if (version !== "latest" && !availableVersions.some((v) => v.emoji_version === version)) {
+  if (res == null) {
+    return await next();
+  }
+
+  const payload = await res.json<{
+    latest_version: string;
+    versions: {
+      emoji_version: string;
+      unicode_version: string;
+      draft: boolean;
+    }[];
+  }>();
+
+  const versions = payload.versions;
+  const latestVersion = payload.latest_version;
+
+  if (version !== "latest" && !versions.some((v) => v.emoji_version === version)) {
     return createError(c, 404, "version not found");
   }
 
   if (version === "latest") {
-    // redirect to the latest version, that isn't a draft.
-    const latestVersion = availableVersions.find((v) => !v.draft);
-
-    if (latestVersion == null) {
-      return createError(c, 404, "no versions available");
-    }
-
-    const path = fullPath.replace("latest", latestVersion.emoji_version ?? DEFAULT_FALLBACK_VERSION);
+    const path = fullPath.replace("latest", latestVersion ?? DEFAULT_FALLBACK_VERSION);
 
     return c.redirect(path);
   }

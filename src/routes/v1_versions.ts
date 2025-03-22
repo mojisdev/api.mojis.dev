@@ -1,10 +1,10 @@
-import type { HonoContext } from "../types";
+import type { HonoEnv } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { cache } from "../middlewares/cache";
 import { createError, getAvailableVersions } from "../utils";
 import { ALL_EMOJI_VERSIONS_ROUTE, DRAFT_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE } from "./v1_versions.openapi";
 
-export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/versions");
+export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoEnv>().basePath("/api/v1/versions");
 
 V1_VERSIONS_ROUTER.get("*", cache({
   cacheName: "v1-versions",
