@@ -5,6 +5,7 @@ import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
 import { buildOpenApiConfig } from "./openapi";
+import { DATA_SCHEMAS_ROUTER } from "./routes/data-schemas";
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
@@ -15,6 +16,7 @@ const app = new OpenAPIHono<HonoEnv>();
 app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
+app.route("/", DATA_SCHEMAS_ROUTER);
 app.route("/", RANDOM_EMOJI_ROUTER);
 
 app.get(
@@ -101,6 +103,12 @@ app.notFound(async (c) => {
     timestamp: new Date().toISOString(),
   } satisfies ApiError, 404);
 });
+
+const getOpenAPIDocument = app.getOpenAPIDocument;
+
+export {
+  getOpenAPIDocument,
+};
 
 export default {
   fetch: app.fetch,
