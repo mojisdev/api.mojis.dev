@@ -59,10 +59,14 @@ describe("gateway_github", () => {
   });
 
   it("should cache responses", async () => {
+    let callCount = 0;
     fetchMock
       .get("https://api.github.com")
       .intercept({ path: "/emojis" })
-      .reply(200, mockGitHubEmojis).persist();
+      .reply(200, () => {
+        callCount++;
+        return mockGitHubEmojis;
+      }).persist();
 
     // first request
     const request1 = new Request("https://api.mojis.dev/api/gateway/github/emojis");
@@ -82,5 +86,6 @@ describe("gateway_github", () => {
     expect(response2.headers.get("X-Cache")).toBe("HIT");
     expect(response1.headers.get("cache-control")).toBe("max-age=3600, immutable");
     expect(response2.headers.get("cache-control")).toBe("max-age=3600, immutable");
+    expect(callCount).toBe(1);
   });
 });
