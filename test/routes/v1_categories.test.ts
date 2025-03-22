@@ -32,6 +32,27 @@ beforeAll(async () => {
       ],
     },
   ]));
+
+  await env.EMOJI_DATA.put("versions.json", JSON.stringify({
+    latest_version: "16.0",
+    versions: [
+      {
+        emoji_version: "17.0",
+        unicode_version: "17.0.0",
+        draft: true,
+      },
+      {
+        emoji_version: "16.0",
+        unicode_version: "16.0.0",
+        draft: false,
+      },
+      {
+        emoji_version: "15.1",
+        unicode_version: "15.1.0",
+        draft: false,
+      },
+    ],
+  }));
 });
 
 describe("v1_categories", () => {
