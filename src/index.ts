@@ -1,5 +1,6 @@
-import type { ApiError, HonoContext } from "./types";
+import type { ApiError, HonoEnv } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { getAllEmojiVersions } from "@mojis/internal-utils/versions";
 import { apiReference } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
@@ -9,7 +10,7 @@ import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
 import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
-const app = new OpenAPIHono<HonoContext>();
+const app = new OpenAPIHono<HonoEnv>();
 
 app.route("/", V1_VERSIONS_ROUTER);
 app.route("/", V1_CATEGORIES_ROUTER);
@@ -101,4 +102,23 @@ app.notFound(async (c) => {
   } satisfies ApiError, 404);
 });
 
-export default app;
+export default {
+  fetch: app.fetch,
+  scheduled: async (_, env) => {
+    const versions = await getAllEmojiVersions();
+
+    const firstNonDraftVersion = versions.find((v) => !v.draft);
+
+    if (firstNonDraftVersion == null) {
+      throw new Error("no non-draft version found");
+    }
+
+    await env.EMOJI_DATA.put(`versions.json`, JSON.stringify({
+      latest_version: firstNonDraftVersion.emoji_version,
+      versions,
+    }));
+
+    // eslint-disable-next-line no-console
+    console.log("cron processed");
+  },
+} satisfies ExportedHandler<HonoEnv["Bindings"]>;

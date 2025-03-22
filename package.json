@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.19.2",
-    "@mojis/internal-utils": "^0.0.5",
+    "@mojis/internal-utils": "^0.0.6",
     "@scalar/hono-api-reference": "^0.7.2",
     "hono": "^4.7.5",
     "zod": "^3.24.2"
@@ -29,7 +29,7 @@
     "@cloudflare/vitest-pool-workers": "^0.8.3",
     "@luxass/eslint-config": "^4.17.1",
     "@stoplight/spectral-cli": "^6.14.3",
-    "eslint": "^9.22.0",
+    "eslint": "^9.23.0",
     "eslint-plugin-format": "^1.0.1",
     "nanotar": "^0.2.0",
     "tsx": "^4.19.3",

@@ -1,4 +1,4 @@
-import type { HonoContext } from "../types";
+import type { HonoEnv } from "../types";
 import { OpenAPIHono, z } from "@hono/zod-openapi";
 import { HTTPException } from "hono/http-exception";
 import { cache } from "../middlewares/cache";
@@ -7,7 +7,7 @@ import { EmojiCategorySchema } from "../schemas";
 import { createError } from "../utils";
 import { ALL_CATEGORIES_ROUTE, GET_CATEGORY_ROUTE } from "./v1_categories.openapi";
 
-export const V1_CATEGORIES_ROUTER = new OpenAPIHono<HonoContext>().basePath("/api/v1/categories/:version");
+export const V1_CATEGORIES_ROUTER = new OpenAPIHono<HonoEnv>().basePath("/api/v1/categories/:version");
 
 V1_CATEGORIES_ROUTER.use(versionMiddleware);
 

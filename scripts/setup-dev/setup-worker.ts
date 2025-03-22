@@ -9,7 +9,7 @@ const app = new Hono<{
 }>();
 
 app.post(
-  "/upload",
+  "/setup",
   async (c) => {
     const body = await c.req.parseBody();
 
@@ -50,6 +50,21 @@ app.post(
 
       promises.push(c.env.EMOJI_DATA.put(normalizedEntryName, entry.text));
     }
+
+    // fetch and save the emojis.lock file
+    const lockResponse = await fetch("https://raw.githubusercontent.com/mojisdev/emoji-data/refs/heads/main/emojis.lock", {
+      headers: {
+        "User-Agent": "luxass - (api.mojis.dev)",
+      },
+    });
+
+    if (!lockResponse.ok) {
+      throw new HTTPException(500, {
+        message: "Failed to fetch emojis.lock file",
+      });
+    }
+    const lockData = await lockResponse.json();
+    promises.push(c.env.EMOJI_DATA.put("versions.json", JSON.stringify(lockData)));
 
     try {
       await Promise.all(promises);

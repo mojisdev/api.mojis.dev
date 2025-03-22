@@ -1,8 +1,8 @@
-import type { HonoContext } from "../types";
+import type { HonoEnv } from "../types";
 import { Hono } from "hono";
 import { cache } from "../middlewares/cache";
 
-export const RANDOM_EMOJI_ROUTER = new Hono<HonoContext>();
+export const RANDOM_EMOJI_ROUTER = new Hono<HonoEnv>();
 
 RANDOM_EMOJI_ROUTER.get(
   "/random-emoji.png",
