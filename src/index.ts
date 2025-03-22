@@ -104,6 +104,12 @@ app.notFound(async (c) => {
   } satisfies ApiError, 404);
 });
 
+const getOpenAPIDocument = app.getOpenAPIDocument;
+
+export {
+  getOpenAPIDocument,
+};
+
 export default {
   fetch: app.fetch,
   scheduled: async (_, env) => {
