@@ -1,4 +1,5 @@
 import type { HonoEnv } from "../types";
+import emojisSchema from "@mojis/json-schemas/emojis.json";
 import groupsSchema from "@mojis/json-schemas/groups.json";
 import { Hono } from "hono";
 import { cache } from "../middlewares/cache";
@@ -12,4 +13,8 @@ DATA_SCHEMAS_ROUTER.get("*", cache({
 
 DATA_SCHEMAS_ROUTER.get("/groups.json", (c) => {
   return c.json(groupsSchema);
+});
+
+DATA_SCHEMAS_ROUTER.get("/emojis.json", (c) => {
+  return c.json(emojisSchema);
 });

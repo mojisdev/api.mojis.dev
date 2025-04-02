@@ -15,8 +15,8 @@ importers:
         specifier: ^0.0.6
         version: 0.0.6
       '@mojis/json-schemas':
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.4
+        version: 0.0.4
       '@scalar/hono-api-reference':
         specifier: ^0.7.2
         version: 0.7.2(hono@4.7.5)
@@ -736,8 +736,8 @@ packages:
   '@mojis/internal-utils@0.0.6':
     resolution: {integrity: sha512-Ayk2fo4qjT2iO6KoAKcH5bSbeRvcr+S8Q1Mv4evsx/MMeLeCL1oLAhFwva4Sc4RfhlquqWDldlJ4C+qlPdjebA==}
 
-  '@mojis/json-schemas@0.0.2':
-    resolution: {integrity: sha512-PnKml0cf8w/OKvH0ChmOr5C1DpANnUINd9Jr5+GI/APTXmIOluO055cZK4M7w414HP6rrMIqUNOSQvTy5bSOpw==}
+  '@mojis/json-schemas@0.0.4':
+    resolution: {integrity: sha512-svA1VR/areMgiLEOdlaxaWgYBhXQDzfSFX70xMjk7coCehc0o2OSt+HWm7ABmS2F1BkzT6mwts5tICZsadt0Pw==}
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3615,7 +3615,7 @@ snapshots:
       semver: 7.7.1
       zod: 3.24.2
 
-  '@mojis/json-schemas@0.0.2': {}
+  '@mojis/json-schemas@0.0.4': {}
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
