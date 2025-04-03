@@ -51,8 +51,8 @@ app.post(
       promises.push(c.env.EMOJI_DATA.put(normalizedEntryName, entry.text));
     }
 
-    // fetch and save the emojis.lock file
-    const lockResponse = await fetch("https://raw.githubusercontent.com/mojisdev/emoji-data/refs/heads/main/emojis.lock", {
+    // fetch and save the emoji-versions.json file
+    const lockResponse = await fetch("https://raw.githubusercontent.com/mojisdev/emoji-data/refs/heads/main/emoji-versions.json", {
       headers: {
         "User-Agent": "luxass - (api.mojis.dev)",
       },
@@ -60,7 +60,7 @@ app.post(
 
     if (!lockResponse.ok) {
       throw new HTTPException(500, {
-        message: "Failed to fetch emojis.lock file",
+        message: "Failed to fetch emoji-versions.json file",
       });
     }
     const lockData = await lockResponse.json();

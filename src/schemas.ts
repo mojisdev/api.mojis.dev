@@ -49,12 +49,10 @@ export const ApiErrorSchema = z.object({
   description: "An error response",
 });
 
-export const EMOJI_LOCK_SCHEMA = z.object({
-  versions: z.array(
-    z.object({
-      emoji_version: z.string().nullable(),
-      unicode_version: z.string().nullable(),
-      draft: z.boolean(),
-    }),
-  ),
-});
+export const EMOJI_VERSIONS_SCHEMA = z.array(
+  z.object({
+    emoji_version: z.string().nullable(),
+    unicode_version: z.string().nullable(),
+    draft: z.boolean(),
+  }),
+);
