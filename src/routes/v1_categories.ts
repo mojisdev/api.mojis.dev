@@ -18,8 +18,9 @@ V1_CATEGORIES_ROUTER.get("*", cache({
 
 V1_CATEGORIES_ROUTER.openapi(ALL_CATEGORIES_ROUTE, async (c) => {
   const version = c.req.param("version");
-
+  console.warn(`Fetching categories for version ${version}`);
   const res = await c.env.EMOJI_DATA.get(`v${version}/groups.json`);
+
   if (res == null) {
     throw new HTTPException(500, {
       message: "failed to fetch categories",
