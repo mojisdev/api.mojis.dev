@@ -17,10 +17,6 @@ export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
     return createError(c, 400, "missing version");
   }
 
-  if (version !== "latest") {
-    return await next();
-  }
-
   try {
     // eslint-disable-next-line no-console
     console.time("fetch-emoji-versions");
@@ -41,7 +37,12 @@ export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
     // eslint-disable-next-line no-console
     console.timeEnd("fetch-emoji-versions");
 
+    const versions = payload.versions;
     const latestVersion = payload.latest_version;
+
+    if (version !== "latest" && !versions.some((v) => v.emoji_version === version)) {
+      return createError(c, 404, "version not found");
+    }
 
     if (version === "latest") {
       return redirectLatest(c, fullPath, latestVersion);
