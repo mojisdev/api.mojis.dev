@@ -24,7 +24,7 @@ export const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
     200: {
       content: {
         "application/json": {
-          schema: z.array(EmojiVersionSchema),
+          schema: z.array(EmojiVersionSchema).openapi("EmojiVersions"),
         },
       },
       description: "Retrieve a list of all emoji versions available",
