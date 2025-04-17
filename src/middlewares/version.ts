@@ -18,8 +18,11 @@ export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
   }
 
   try {
+    const start = performance.now();
     const res = await c.env.EMOJI_DATA.get("versions.json");
-
+    const end = performance.now();
+    // eslint-disable-next-line no-console
+    console.log(`Fetching versions took ${end - start}ms`);
     if (res == null) {
       return await next();
     }
