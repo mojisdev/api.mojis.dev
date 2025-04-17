@@ -18,8 +18,6 @@ export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
   }
 
   try {
-    // eslint-disable-next-line no-console
-    console.time("fetch-emoji-versions");
     const res = await c.env.EMOJI_DATA.get("versions.json");
 
     if (res == null) {
@@ -34,8 +32,6 @@ export const versionMiddleware = createMiddleware<HonoEnv>(async (c, next) => {
         draft: boolean;
       }[];
     }>();
-    // eslint-disable-next-line no-console
-    console.timeEnd("fetch-emoji-versions");
 
     const versions = payload.versions;
     const latestVersion = payload.latest_version;
