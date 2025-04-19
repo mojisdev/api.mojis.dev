@@ -2,7 +2,7 @@
   "name": "api.mojis.dev",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.6.5",
+  "packageManager": "pnpm@10.8.1",
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run --outdir=dist",
@@ -19,24 +19,24 @@
     "typecheck": "pnpm run cf-typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@hono/zod-openapi": "^0.19.2",
-    "@mojis/internal-utils": "^0.0.6",
-    "@mojis/json-schemas": "^0.0.4",
-    "@scalar/hono-api-reference": "^0.7.2",
-    "hono": "^4.7.5",
-    "zod": "^3.24.2"
+    "@hono/zod-openapi": "^0.19.5",
+    "@mojis/internal-utils": "^0.1.0",
+    "@mojis/json-schemas": "^0.1.0",
+    "@scalar/hono-api-reference": "^0.8.2",
+    "hono": "^4.7.7",
+    "zod": "^3.24.3"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.3",
-    "@luxass/eslint-config": "^4.17.1",
+    "@cloudflare/vitest-pool-workers": "^0.8.18",
+    "@luxass/eslint-config": "^4.18.1",
     "@stoplight/spectral-cli": "^6.14.3",
-    "eslint": "^9.23.0",
+    "eslint": "^9.25.0",
     "eslint-plugin-format": "^1.0.1",
     "nanotar": "^0.2.0",
     "tsx": "^4.19.3",
-    "typescript": "^5.8.2",
-    "vitest": "^3.0.9",
-    "wrangler": "^4.3.0"
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.1",
+    "wrangler": "^4.12.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
