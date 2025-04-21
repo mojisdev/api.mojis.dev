@@ -85,5 +85,9 @@ V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSION_ROUTE, async (c) => {
 
   const spec = specs.find((item) => item.version === version || item.version === `v${version}`);
 
+  if (spec == null) {
+    return createError(c, 404, "version not found");
+  }
+
   return c.json(spec, 200);
 });

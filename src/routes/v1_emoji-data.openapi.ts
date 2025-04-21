@@ -60,6 +60,14 @@ export const EMOJI_DATA_VERSION_ROUTE = createRoute({
       },
       description: "Describe a version's emoji data spec",
     },
+    404: {
+      content: {
+        "application/json": {
+          schema: ApiErrorSchema,
+        },
+      },
+      description: "The version is either not valid, or not available",
+    },
     500: {
       content: {
         "application/json": {
