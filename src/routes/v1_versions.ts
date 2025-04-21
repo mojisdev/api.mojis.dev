@@ -1,8 +1,9 @@
 import type { HonoEnv } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
+import { OFFICIAL_SUPPORTED_VERSIONS } from "@mojis/internal-utils/constants";
 import { cache } from "../middlewares/cache";
 import { createError, getAvailableVersions } from "../utils";
-import { ALL_EMOJI_VERSIONS_ROUTE, DRAFT_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE } from "./v1_versions.openapi";
+import { ALL_EMOJI_VERSIONS_ROUTE, DRAFT_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE, SUPPORTED_VERSIONS_ROUTE } from "./v1_versions.openapi";
 
 export const V1_VERSIONS_ROUTER = new OpenAPIHono<HonoEnv>().basePath("/api/v1/versions");
 
@@ -59,4 +60,8 @@ V1_VERSIONS_ROUTER.openapi(DRAFT_EMOJI_VERSIONS_ROUTE, async (c) => {
   } catch {
     return createError(c, 500, "failed to fetch emoji data");
   }
+});
+
+V1_VERSIONS_ROUTER.openapi(SUPPORTED_VERSIONS_ROUTE, (c) => {
+  return c.json(OFFICIAL_SUPPORTED_VERSIONS, 200);
 });

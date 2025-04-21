@@ -1,7 +1,7 @@
 import type { ApiError, HonoEnv } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
 import { getAllEmojiVersions } from "@mojis/internal-utils/versions";
-import { apiReference } from "@scalar/hono-api-reference";
+import { Scalar } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
 import { buildOpenApiConfig } from "./openapi";
@@ -18,10 +18,9 @@ app.route("/", V1_CATEGORIES_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
 app.route("/", DATA_SCHEMAS_ROUTER);
 app.route("/", RANDOM_EMOJI_ROUTER);
-
 app.get(
   "/scalar",
-  apiReference({
+  Scalar({
     url: "/openapi.json",
     layout: "classic",
     customCss: /* css */`
