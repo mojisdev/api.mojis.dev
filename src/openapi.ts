@@ -20,8 +20,6 @@ export function buildOpenApiConfig(version: string, servers: NonNullable<OpenAPI
         email: "mail@mojis.dev",
       },
     },
-    // The tags should be sorted alphabetically
-    // TODO: fail if this isn't sorted
     tags: [
       {
         name: "Categories",
@@ -34,6 +32,10 @@ export function buildOpenApiConfig(version: string, servers: NonNullable<OpenAPI
       {
         name: "Versions",
         description: "Emoji versions related endpoints",
+      },
+      {
+        name: "Emoji Data",
+        description: "Endpoints related to Emoji Data",
       },
     ],
     servers,

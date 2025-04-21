@@ -9,6 +9,7 @@ import { DATA_SCHEMAS_ROUTER } from "./routes/data-schemas";
 import { GATEWAY_GITHUB_ROUTER } from "./routes/gateway_github";
 import { RANDOM_EMOJI_ROUTER } from "./routes/random-emoji";
 import { V1_CATEGORIES_ROUTER } from "./routes/v1_categories";
+import { V1_EMOJI_DATA_ROUTER } from "./routes/v1_emoji-data";
 import { V1_VERSIONS_ROUTER } from "./routes/v1_versions";
 
 const app = new OpenAPIHono<HonoEnv>();
@@ -18,6 +19,8 @@ app.route("/", V1_CATEGORIES_ROUTER);
 app.route("/", GATEWAY_GITHUB_ROUTER);
 app.route("/", DATA_SCHEMAS_ROUTER);
 app.route("/", RANDOM_EMOJI_ROUTER);
+app.route("/", V1_EMOJI_DATA_ROUTER);
+
 app.get(
   "/scalar",
   Scalar({
