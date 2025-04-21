@@ -1,9 +1,9 @@
 import type { HonoEnv } from "../types";
-import { OpenAPIHono, z } from "@hono/zod-openapi";
+import { OpenAPIHono } from "@hono/zod-openapi";
 import { DEFAULT_USER_AGENT } from "../constants";
 import { cache } from "../middlewares/cache";
 import { createError } from "../utils";
-import { EMOJI_DATA_VERSIONS } from "./v1_emoji-data.openapi";
+import { EMOJI_DATA_VERSION_ROUTE, EMOJI_DATA_VERSIONS_ROUTE } from "./v1_emoji-data.openapi";
 
 export const V1_EMOJI_DATA_ROUTER = new OpenAPIHono<HonoEnv>().basePath("/api/v1/emoji-data");
 
@@ -25,7 +25,7 @@ V1_EMOJI_DATA_ROUTER.get("*", cache({
   cacheControl: "max-age=3600, immutable",
 }));
 
-V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSIONS, async (c) => {
+V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSIONS_ROUTE, async (c) => {
   const branch = c.req.query("branch") ?? "main";
 
   const res = await fetch(`https://api.github.com/repos/mojisdev/emoji-data/contents/data?ref=${branch}`, {
@@ -53,4 +53,37 @@ V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSIONS, async (c) => {
   }));
 
   return c.json(specs, 200);
+});
+
+V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSION_ROUTE, async (c) => {
+  const branch = c.req.query("branch") ?? "main";
+  const version = c.req.param("version");
+
+  const res = await fetch(`https://api.github.com/repos/mojisdev/emoji-data/contents/data?ref=${branch}`, {
+    headers: {
+      "Accept": "application/vnd.github.v3+json",
+      "X-GitHub-Api-Version": "2022-11-28",
+      "Authorization": `Bearer ${c.env.GITHUB_TOKEN}`,
+      "User-Agent": DEFAULT_USER_AGENT,
+    },
+  });
+
+  if (!res.ok) {
+    return createError(c, 500, "failed to fetch emoji data");
+  }
+
+  const data = await res.json();
+
+  if (!isGitHubContentArray(data)) {
+    return createError(c, 500, "failed to fetch emoji data");
+  }
+
+  const specs = data.map((item) => ({
+    version: item.name,
+    path: `/data/${item.name}`,
+  }));
+
+  const spec = specs.find((item) => item.version === version || item.version === `v${version}`);
+
+  return c.json(spec, 200);
 });
