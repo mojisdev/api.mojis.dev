@@ -63,7 +63,7 @@ V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSION_ROUTE, async (c) => {
     return createError(c, 400, "version is required");
   }
 
-  const res = await fetch(`https://api.github.com/repos/mojisdev/emoji-data/contents/data?ref=${branch}`, {
+  const res = await fetch(`https://api.github.com/repos/mojisdev/emoji-data/contents/data/${version}?ref=${branch}`, {
     headers: {
       "Accept": "application/vnd.github.v3+json",
       "X-GitHub-Api-Version": "2022-11-28",
@@ -73,25 +73,15 @@ V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSION_ROUTE, async (c) => {
   });
 
   if (!res.ok) {
+    if (res.status === 404) {
+      return createError(c, 404, "version not found");
+    }
+
     return createError(c, 500, "failed to fetch emoji data");
   }
 
-  const data = await res.json();
-
-  if (!isGitHubContentArray(data)) {
-    return createError(c, 500, "failed to fetch emoji data");
-  }
-
-  const specs = data.map((item) => ({
-    version: item.name,
-    path: `/data/${item.name}`,
-  }));
-
-  const spec = specs.find((item) => item.version === version || item.version === `v${version}`);
-
-  if (spec == null) {
-    return createError(c, 404, "version not found");
-  }
-
-  return c.json(spec, 200);
+  return c.json({
+    version,
+    path: `/data/${version}`,
+  }, 200);
 });
