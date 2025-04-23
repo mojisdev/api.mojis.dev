@@ -17,6 +17,9 @@ importers:
       '@mojis/json-schemas':
         specifier: ^0.1.0
         version: 0.1.0
+      '@mojis/versions':
+        specifier: ^0.1.0
+        version: 0.1.0
       '@scalar/hono-api-reference':
         specifier: ^0.8.2
         version: 0.8.2(hono@4.7.7)
@@ -773,6 +776,12 @@ packages:
 
   '@mojis/schemas@0.0.3':
     resolution: {integrity: sha512-KI/wONyRtPEmzzghGHNajK4ep9TjaymbIwvcg4ZmG8QlMznWqZs0IYBNx3539SMOBust5mTCvxLKcyatY6bXzA==}
+
+  '@mojis/schemas@0.1.0':
+    resolution: {integrity: sha512-7TOhUgDlcPyR/2S8ruSoWF/Ztipwz10tv7AtbflB3kyjWbr8M/nfRMe9Xx1IQR+ot94+a4/RY3B0zgcsufGBcw==}
+
+  '@mojis/versions@0.1.0':
+    resolution: {integrity: sha512-6jqbYAyybzAUMmX8UBw9rIlpffEJBTgwzxclg66JVIbPfRp4176P0rqsOlhi8Np51lMYTD5skR0+y1WxjE+6Bw==}
 
   '@napi-rs/wasm-runtime@0.2.9':
     resolution: {integrity: sha512-OKRBiajrrxB9ATokgEQoG87Z25c67pCpYcCwmXYX8PBftC9pBfN18gnm/fh1wurSLEKIAt+QRFLFCQISrb66Jg==}
@@ -3817,6 +3826,15 @@ snapshots:
   '@mojis/schemas@0.0.3':
     dependencies:
       arktype: 2.1.20
+
+  '@mojis/schemas@0.1.0':
+    dependencies:
+      arktype: 2.1.20
+
+  '@mojis/versions@0.1.0':
+    dependencies:
+      '@mojis/moji-compare': 0.4.0
+      '@mojis/schemas': 0.1.0
 
   '@napi-rs/wasm-runtime@0.2.9':
     dependencies:

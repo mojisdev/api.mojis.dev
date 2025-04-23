@@ -59,6 +59,10 @@ V1_EMOJI_DATA_ROUTER.openapi(EMOJI_DATA_VERSION_ROUTE, async (c) => {
   const branch = c.req.query("branch") ?? "main";
   const version = c.req.param("version");
 
+  if (version == null || version.trim() === "") {
+    return createError(c, 400, "version is required");
+  }
+
   const res = await fetch(`https://api.github.com/repos/mojisdev/emoji-data/contents/data?ref=${branch}`, {
     headers: {
       "Accept": "application/vnd.github.v3+json",

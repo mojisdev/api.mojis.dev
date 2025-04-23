@@ -8,10 +8,10 @@ const VERSION_PATH_PARAMETER = {
   name: "version",
   description: "The emoji version to use",
   required: true,
-  example: "latest",
   schema: {
     type: "string" as const,
   },
+  allowEmptyValue: false,
 };
 
 export const EMOJI_DATA_VERSIONS_ROUTE = createRoute({
@@ -59,6 +59,14 @@ export const EMOJI_DATA_VERSION_ROUTE = createRoute({
         },
       },
       description: "Describe a version's emoji data spec",
+    },
+    400: {
+      content: {
+        "application/json": {
+          schema: ApiErrorSchema,
+        },
+      },
+      description: "The version is not valid",
     },
     404: {
       content: {

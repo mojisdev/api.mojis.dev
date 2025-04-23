@@ -1,6 +1,6 @@
 import type { HonoEnv } from "../types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { OFFICIAL_SUPPORTED_VERSIONS } from "@mojis/internal-utils/constants";
+import { OFFICIAL_SUPPORTED_VERSIONS } from "@mojis/versions";
 import { cache } from "../middlewares/cache";
 import { createError, getAvailableVersions } from "../utils";
 import { ALL_EMOJI_VERSIONS_ROUTE, DRAFT_EMOJI_VERSIONS_ROUTE, LATEST_EMOJI_VERSIONS_ROUTE, SUPPORTED_VERSIONS_ROUTE } from "./v1_versions.openapi";
