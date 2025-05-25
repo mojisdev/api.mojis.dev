@@ -1,16 +1,6 @@
 import { createRoute, z } from "@hono/zod-openapi";
+import { DRAFT_PARAMETER } from "../global-openapi";
 import { ApiErrorSchema, EmojiVersionSchema } from "../schemas";
-
-const DRAFT_PARAMETER = {
-  in: "query" as const,
-  name: "draft",
-  required: false,
-  description: "Whether to include draft versions",
-  schema: {
-    type: "string" as const,
-    enum: ["true", "false"],
-  },
-};
 
 export const ALL_EMOJI_VERSIONS_ROUTE = createRoute({
   method: "get",
@@ -89,6 +79,31 @@ export const DRAFT_EMOJI_VERSIONS_ROUTE = createRoute({
         },
       },
       description: "No draft versions available",
+    },
+    500: {
+      content: {
+        "application/json": {
+          schema: ApiErrorSchema,
+        },
+      },
+      description: "Internal Server Error",
+    },
+  },
+});
+
+export const SUPPORTED_VERSIONS_ROUTE = createRoute({
+  method: "get",
+  path: "/supported",
+  tags: ["Versions"],
+  description: "Retrieve a list of emoji versions that is supported by @mojis",
+  responses: {
+    200: {
+      content: {
+        "application/json": {
+          schema: z.array(z.string()).openapi("SupportedVersions"),
+        },
+      },
+      description: "Retrieve a list of emoji versions that is supported by @mojis",
     },
     500: {
       content: {

@@ -22,6 +22,7 @@
     "@hono/zod-openapi": "^0.19.5",
     "@mojis/internal-utils": "^0.1.0",
     "@mojis/json-schemas": "^0.1.0",
+    "@mojis/versions": "^0.1.0",
     "@scalar/hono-api-reference": "^0.8.2",
     "hono": "^4.7.7",
     "zod": "^3.24.3"

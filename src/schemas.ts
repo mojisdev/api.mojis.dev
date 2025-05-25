@@ -54,3 +54,14 @@ export const EMOJI_VERSIONS_SCHEMA = z.array(
     draft: z.boolean(),
   }),
 );
+
+export const EMOJI_DATA_SPEC_SCHEMA = z.object({
+  version: z.string().openapi({
+    description: "The emoji version that this spec is for",
+    example: "16.0",
+  }),
+  path: z.string().openapi({
+    description: "The path to the emoji data file",
+    example: "/emoji-data/16.0.json",
+  }),
+});

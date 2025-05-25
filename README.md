@@ -5,7 +5,7 @@ A RESTful API for accessing emoji data.
 ## 📦 Installation
 
 ```sh
-git clone https://github.com/mojis-dev/api.mojis.dev.git
+git clone https://github.com/mojisdev/api.mojis.dev.git
 cd api.mojis.dev
 pnpm install
 ```
