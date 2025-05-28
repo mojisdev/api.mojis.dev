@@ -2,7 +2,7 @@
   "name": "api.mojis.dev",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.8.1",
+  "packageManager": "pnpm@10.11.0",
   "scripts": {
     "dev": "wrangler dev",
     "build": "wrangler deploy --dry-run --outdir=dist",
@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@hono/zod-openapi": "^0.19.5",
-    "@mojis/internal-utils": "^0.1.0",
+    "@mojis/internal-utils": "^0.2.0",
     "@mojis/json-schemas": "^0.1.0",
     "@mojis/versions": "^0.1.0",
     "@scalar/hono-api-reference": "^0.8.2",
