@@ -1,6 +1,6 @@
 import type { ApiError, HonoEnv } from "./types";
 import { OpenAPIHono } from "@hono/zod-openapi";
-import { getAllEmojiVersions } from "@mojis/internal-utils/versions";
+import { getAllEmojiVersions } from "@mojis/versions";
 import { Scalar } from "@scalar/hono-api-reference";
 import { env } from "hono/adapter";
 import { HTTPException } from "hono/http-exception";
