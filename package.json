@@ -19,25 +19,25 @@
     "typecheck": "pnpm run cf-typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@hono/zod-openapi": "^0.19.7",
-    "@mojis/internal-utils": "^0.2.0",
-    "@mojis/json-schemas": "^0.1.0",
-    "@mojis/versions": "^0.1.2",
-    "@scalar/hono-api-reference": "^0.9.1",
-    "hono": "^4.7.10",
-    "zod": "^3.25.34"
+    "@hono/zod-openapi": "0.19.9",
+    "@mojis/internal-utils": "0.2.0",
+    "@mojis/json-schemas": "0.1.0",
+    "@mojis/versions": "0.1.2",
+    "@scalar/hono-api-reference": "0.9.10",
+    "hono": "4.9.7",
+    "zod": "3.25.76"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.33",
-    "@luxass/eslint-config": "^4.18.1",
-    "@stoplight/spectral-cli": "^6.15.0",
+    "@cloudflare/vitest-pool-workers": "0.8.53",
+    "@luxass/eslint-config": "4.19.0",
+    "@stoplight/spectral-cli": "6.15.0",
     "eslint": "^9.27.0",
     "eslint-plugin-format": "^1.0.1",
-    "nanotar": "^0.2.0",
-    "tsx": "^4.19.4",
-    "typescript": "^5.8.3",
+    "nanotar": "0.2.0",
+    "tsx": "4.20.3",
+    "typescript": "5.8.3",
     "vitest": "^3.1.4",
-    "wrangler": "^4.17.0"
+    "wrangler": "4.24.3"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
