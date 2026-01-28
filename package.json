@@ -24,7 +24,7 @@
     "@mojis/json-schemas": "0.1.0",
     "@mojis/versions": "0.1.2",
     "@scalar/hono-api-reference": "0.9.10",
-    "hono": "4.10.3",
+    "hono": "4.11.7",
     "zod": "3.25.76"
   },
   "devDependencies": {
