@@ -40,10 +40,10 @@ importers:
         specifier: 6.15.0
         version: 6.15.0
       eslint:
-        specifier: ^9.27.0
+        specifier: 9.27.0
         version: 9.27.0
       eslint-plugin-format:
-        specifier: ^1.0.1
+        specifier: 1.0.1
         version: 1.0.1(eslint@9.27.0)
       nanotar:
         specifier: 0.2.0
