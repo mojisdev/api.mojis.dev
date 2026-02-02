@@ -25,7 +25,7 @@
     "@mojis/versions": "0.1.2",
     "@scalar/hono-api-reference": "0.9.10",
     "hono": "4.11.7",
-    "zod": "3.25.76"
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.8.53",
