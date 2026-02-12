@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@hono/zod-openapi':
         specifier: 0.19.9
-        version: 0.19.9(hono@4.11.7)(zod@3.25.76)
+        version: 0.19.9(hono@4.11.7)(zod@4.3.6)
       '@mojis/internal-utils':
         specifier: 0.2.0
         version: 0.2.0
@@ -27,8 +27,8 @@ importers:
         specifier: 4.11.7
         version: 4.11.7
       zod:
-        specifier: 3.25.76
-        version: 3.25.76
+        specifier: 4.3.6
+        version: 4.3.6
     devDependencies:
       '@cloudflare/vitest-pool-workers':
         specifier: 0.8.53
@@ -3542,6 +3542,9 @@ packages:
   zod@3.25.76:
     resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
 
+  zod@4.3.6:
+    resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -3558,10 +3561,10 @@ snapshots:
 
   '@ark/util@0.46.0': {}
 
-  '@asteasolutions/zod-to-openapi@7.3.4(zod@3.25.76)':
+  '@asteasolutions/zod-to-openapi@7.3.4(zod@4.3.6)':
     dependencies:
       openapi3-ts: 4.5.0
-      zod: 3.25.76
+      zod: 4.3.6
 
   '@asyncapi/specs@6.8.1':
     dependencies:
@@ -3993,18 +3996,18 @@ snapshots:
 
   '@fastify/busboy@2.1.1': {}
 
-  '@hono/zod-openapi@0.19.9(hono@4.11.7)(zod@3.25.76)':
+  '@hono/zod-openapi@0.19.9(hono@4.11.7)(zod@4.3.6)':
     dependencies:
-      '@asteasolutions/zod-to-openapi': 7.3.4(zod@3.25.76)
-      '@hono/zod-validator': 0.7.0(hono@4.11.7)(zod@3.25.76)
+      '@asteasolutions/zod-to-openapi': 7.3.4(zod@4.3.6)
+      '@hono/zod-validator': 0.7.0(hono@4.11.7)(zod@4.3.6)
       hono: 4.11.7
       openapi3-ts: 4.5.0
-      zod: 3.25.76
+      zod: 4.3.6
 
-  '@hono/zod-validator@0.7.0(hono@4.11.7)(zod@3.25.76)':
+  '@hono/zod-validator@0.7.0(hono@4.11.7)(zod@4.3.6)':
     dependencies:
       hono: 4.11.7
-      zod: 3.25.76
+      zod: 4.3.6
 
   '@humanfs/core@0.19.1': {}
 
@@ -7347,5 +7350,7 @@ snapshots:
   zod@3.24.1: {}
 
   zod@3.25.76: {}
+
+  zod@4.3.6: {}
 
   zwitch@2.0.4: {}
