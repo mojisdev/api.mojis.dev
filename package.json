@@ -19,7 +19,7 @@
     "typecheck": "pnpm run cf-typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@hono/zod-openapi": "0.19.9",
+    "@hono/zod-openapi": "1.2.1",
     "@mojis/internal-utils": "0.2.0",
     "@mojis/json-schemas": "0.1.0",
     "@mojis/versions": "0.1.2",
