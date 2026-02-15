@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "0.8.53",
-    "@luxass/eslint-config": "4.19.0",
+    "@luxass/eslint-config": "7.0.1",
     "@stoplight/spectral-cli": "6.15.0",
     "eslint": "9.27.0",
     "eslint-plugin-format": "1.0.1",
